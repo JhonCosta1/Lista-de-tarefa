@@ -6,13 +6,7 @@ let btn = document.querySelector('#botao');
 let lista = document.querySelector('#lista');
 
 
-let tarefas = [
-    'Jogar GTA5',
-    'Jogar GTA4',
-    'Jogar GTA3',
-    'Jogar GTA2',
-    'Jogar GTA1'
-];
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function carregarTarefas(){
     //limpar itens antes de carregar tela
@@ -58,6 +52,8 @@ btn.onclick = function(){
         input.value = '';
         //limpar mensagens de spans
         removerSpans();
+
+        salvarDadosStorage()
     }else{
         removerSpans();
         let card = document.querySelector('.card');
@@ -83,10 +79,15 @@ function deletarTarefa(tar){
     tarefas.splice(tarefas.indexOf(tar.textContent), 1);
 
     carregarTarefas();
+
+    //salva os novos dados no banco de dados
+    salvarDadosStorage()
 }
 
 
-
+function salvarDadosStorage(){
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
 
 
 
