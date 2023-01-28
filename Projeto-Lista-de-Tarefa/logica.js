@@ -15,6 +15,8 @@ let tarefas = [
 ];
 
 function carregarTarefas(){
+    //limpar itens antes de carregar tela
+    lista.innerHTML = '';
     for(tarefa of tarefas){
         //criar o item da list
         let itemLista = document.createElement('li');
@@ -36,6 +38,48 @@ function carregarTarefas(){
 // executar função para carregar as tarefas
 
 carregarTarefas();
+
+
+//Precisamos do evento do click no botão
+btn.onclick = function(){
+    //Precisamos capturar o valor digitado pelo usuário no input
+    let novaTarefa = input.value;
+
+    if(novaTarefa !== ""){
+        //Precisamos atualizar a nova tarefa na lista(inserida no array) Recarregar página
+        tarefas.push(novaTarefa);
+        carregarTarefas();
+        //limpar input
+        input.value = '';
+        //limpar mensagens de spans
+        removerSpans();
+    }else{
+        removerSpans();
+        let card = document.querySelector('.card');
+        let span = document.createElement('span');
+        span.setAttribute('class', 'alert alert-warning');
+        let msg = document.createTextNode('Você precisa informar a tarefa!');
+        span.appendChild(msg);
+        card.appendChild(span);
+    }
+
+}
+
+function removerSpans(){
+    let spans = document.querySelectorAll('span');
+    let card = document.querySelector('.card');
+    for(let i = 0; i < spans.length; i++){
+        card.removeChild(spans[i]);
+    }
+}
+
+function deletarTarefa(tar){
+    
+}
+
+
+
+
 
 
 /* 
