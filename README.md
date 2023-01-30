@@ -11,7 +11,7 @@
  <li>BOOTSTRAP</li>
 </ul>
 
-<h2>Funlções do Projeto:</h2>
+<h2>Funções do Projeto:</h2>
 <ul> 
  <li>Adicionar tarefa</li>
  <li>Excluir tarefa</li>
